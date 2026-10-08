@@ -1,0 +1,6 @@
+{
+  "name": "Vmusix",
+  "description": "Vmusix - Modern YouTube Music Player with synchronized lyrics, downloads, and AMOLED dark design by VeruProject.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

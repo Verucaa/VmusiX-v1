@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Vmusix</string>
+    <string name="app_tagline">Listen Without Limits</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Cari</string>
+    <string name="nav_more">Lainnya</string>
+</resources>

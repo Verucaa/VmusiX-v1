@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Stylized Vmusix V shape with audio wave geometry -->
+    <path
+        android:pathData="M32,32 L49,74 C51,78 57,78 59,74 L76,32 C78,28 73,24 69,27 L54,58 L39,27 C35,24 30,28 32,32 Z"
+        android:strokeWidth="1">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="30"
+                android:startY="25"
+                android:endX="78"
+                android:endY="80"
+                android:type="linear">
+                <item android:color="#A855F7" android:offset="0.0" />
+                <item android:color="#6D28D9" android:offset="0.6" />
+                <item android:color="#2563EB" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Modern equalizer dot accent inside V -->
+    <path
+        android:pathData="M54,34m-3.5,0a3.5,3.5 0 1,0 7,0a3.5,3.5 0 1,0 -7,0"
+        android:fillColor="#FFFFFF" />
+    <path
+        android:pathData="M54,43m-2.5,0a2.5,2.5 0 1,0 5,0a2.5,2.5 0 1,0 -5,0"
+        android:fillColor="#E2E8F0" />
+</vector>
