@@ -4,55 +4,48 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
   build:
-    name: Build Vmusix APK
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Setup JDK 17
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
-          cache: 'gradle'
-
-      - name: Grant Execute Permission for Gradle Wrapper
-        run: |
-          if [ -f "./gradlew" ]; then
-            chmod +x gradlew
-          fi
+          distribution: temurin
+          java-version: 17
+          cache: gradle
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Create Dummy Local Properties and Keystore if needed
+      - name: Install SDK Packages
         run: |
-          keytool -genkeypair -v -keystore debug.keystore -alias androiddebugkey \
-            -keypass android -storepass android -keyalg RSA -keysize 2048 -validity 10000 \
-            -dname "CN=Android Debug,O=Android,C=US" || true
+          sdkmanager \
+          "platform-tools" \
+          "platforms;android-35" \
+          "build-tools;35.0.0"
 
-      - name: Build Debug & Release APK
+      - name: Create local.properties
         run: |
-          gradle assembleDebug --no-daemon --stacktrace
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
 
-      - name: Rename APK for Easy Identification
+      - name: Grant Gradlew Permission
+        run: chmod +x gradlew
+
+      - name: Build APK
         run: |
-          mkdir -p output_apks
-          find app/build/outputs/apk/ -name "*.apk" -exec cp {} output_apks/ \;
-          ls -lah output_apks/
+          ./gradlew assembleDebug \
+          --no-daemon \
+          --stacktrace
 
-      - name: Upload APK Artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Vmusix-APK
-          path: output_apks/*.apk
-          retention-days: 14
+          path: app/build/outputs/apk/debug/*.apk
